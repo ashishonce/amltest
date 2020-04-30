@@ -1,0 +1,19 @@
+name: Workspace Resource Exist
+on: 
+  repository_dispatch:
+    types: [workspace_test]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Out Repository
+        id: checkout_repository
+        uses: actions/checkout@master
+      
+      - name: workspaceCreationTest
+        id: workspaceCreationTest
+        uses: Azure/aml-workspace@master
+        with:
+          azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          parameters_file: "workspace_resource_creation.json"
