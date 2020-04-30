@@ -16,4 +16,4 @@ jobs:
         uses: ashishonce/amlworkspace_2@master
         with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-          parameters_file: "workspace_resource_exists.json"
+          parameters_file: "workspace_resource_creation.json"
