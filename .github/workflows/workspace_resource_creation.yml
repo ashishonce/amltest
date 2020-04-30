@@ -13,7 +13,7 @@ jobs:
       
       - name: workspaceCreationTest
         id: workspaceCreationTest
-        uses: Azure/aml-workspace@master
+        uses: ashishonce/amlworkspace_2@master
         with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           parameters_file: "workspace_resource_creation.json"
