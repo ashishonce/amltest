@@ -1,7 +1,7 @@
 name: Workspace Resource Create
 on: 
   repository_dispatch:
-    types: [workspace_test]
+    types: [workspace_create_test]
 
 jobs:
   build:

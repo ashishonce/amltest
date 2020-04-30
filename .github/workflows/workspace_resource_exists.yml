@@ -1,7 +1,7 @@
 name: Workspace Resource Exist
 on: 
   repository_dispatch:
-    types: [workspace_test]
+    types: [workspace_exist_test]
 
 jobs:
   build:
