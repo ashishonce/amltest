@@ -1,4 +1,4 @@
-name: Workspace Resource Create
+name: Workspace Resource Exist
 on: 
   repository_dispatch:
     types: [workspace_test]
