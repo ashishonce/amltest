@@ -1,7 +1,7 @@
-name: Train with Config py
+name: Train with Yaml Config
 on: 
   repository_dispatch:
-    types: [train_with_Config , train_all]
+    types: [train_with_YamlConfig , train_all]
 
 jobs:
   build:
@@ -23,4 +23,4 @@ jobs:
         uses: Azure/aml-run@master
         with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
-          parameters_file: "train_withConfigpy.json"
+          parameters_file: "train_withYamlRunConfig.json"
