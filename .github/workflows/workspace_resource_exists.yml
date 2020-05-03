@@ -13,7 +13,7 @@ jobs:
       
       - name: workspaceCreationTest
         id: workspaceCreationTest
-        uses: Azure/aml-workspace@master
+        uses: ${{ github.event.client_payload.test_branch }}
         with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
           parameters_file: "workspace_resource_exists.json"
