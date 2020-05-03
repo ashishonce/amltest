@@ -1,0 +1,26 @@
+name: Train with Config py
+on: 
+  repository_dispatch:
+    types: [train_with_Config , train_all]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Out Repository
+        id: checkout_repository
+        uses: actions/checkout@master
+      
+      - name: workSpace Step
+        id: workSpaceStep
+        uses: Azure/aml-workspace@master
+        with:
+          azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          parameters_file: "workspace_resource_exists.json"
+
+      - name: training Step
+        id: trainingStep
+        uses: Azure/aml-run@master
+        with:
+          azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          parameters_file: "train_withConfigpy.json"
