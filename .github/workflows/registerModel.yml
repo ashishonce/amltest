@@ -1,0 +1,44 @@
+name: Register_Model
+on: 
+  repository_dispatch:
+    types: [register_Model]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  train:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - name: Check Out Repository
+      id: checkout_repository
+      uses: actions/checkout@v2
+        
+    # Connect or Create the Azure Machine Learning Workspace
+    - name: Connect/Create Azure Machine Learning Workspace
+      id: aml_workspace
+      uses: Azure/aml-workspace@input-validation
+      with:
+          azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          parameters_file: "workspace_resource_exists.json"
+
+    # Register model in Azure Machine Learning model registry
+    - name: Register model
+      id: aml_registermodel
+      uses: Azure/aml-registermodel@v1
+      with:
+          azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+          run_id:  train-on-amlcompute_1588493034_f29a6e80
+          experiment_name: train-on-amlcompute
+
+    # # Deploy model in Azure Machine Learning to ACI
+    # - name: Deploy model
+    #   id: aml_deploy
+    #   uses: Azure/aml-deploy@v1
+    #   with:
+    #       azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
+    #       model_name:  ${{ steps.aml_registermodel.outputs.model_name }}
+    #       model_version: ${{ steps.aml_registermodel.outputs.model_version }}
